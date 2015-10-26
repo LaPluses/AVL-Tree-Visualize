@@ -1,0 +1,13 @@
+INPUT(
+./debug/main.o
+./debug/widget.o
+./debug/treenode.o
+./debug/treeedge.o
+./debug/treeview.o
+./debug/avltree.o
+./debug/moc_widget.o
+./debug/moc_treenode.o
+./debug/moc_treeedge.o
+./debug/moc_treeview.o
+./debug/moc_avltree.o
+);

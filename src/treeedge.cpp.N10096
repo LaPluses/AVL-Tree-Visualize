@@ -1,0 +1,20 @@
+#include "treeedge.h"
+
+TreeEdge::TreeEdge(TreeNode* A, TreeNode* B) : mA(A), mB(B)
+{
+    connect(A, SIGNAL(destroyed(QObject*)), SLOT(deleteLater()));
+    connect(B, SIGNAL(destroyed(QObject*)), SLOT(deleteLater()));
+}
+
+
+QRectF TreeEdge::boundingRect() const
+{
+    return QRectF(qMin(mA->x(), mB->x()), qMin(mA->y(), mB->y()),
+                  qMax(mA->x(), mB->x()) - qMin(mA->x(), mB->x()),
+                  qMax(mA->y(), mB->y()) - qMin(mA->y(), mB->y()));
+}
+
+void TreeEdge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->drawLine(mA->pos(), mB->pos());
+}
