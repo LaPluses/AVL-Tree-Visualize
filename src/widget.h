@@ -33,6 +33,7 @@ private:
     QPushButton *postOrderButton;
     QPushButton *levelOrderButton;
     QPushButton *clearButton;
+    QCheckBox *showProgressCheckBox;
     AVLTree *tree;
 };
 

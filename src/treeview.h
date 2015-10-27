@@ -19,8 +19,7 @@ class TreeView : public QGraphicsView
 public:
     TreeView();
     void resizeEvent(QResizeEvent *event);
-    void addNode(TreeNode *node);
-    void addEdge(TreeEdge *edge);
+    void addItem(QGraphicsItem *item);
     void setSceneRect(QRectF rect);
 
 private:

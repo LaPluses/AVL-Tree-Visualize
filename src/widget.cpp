@@ -17,6 +17,7 @@ Widget::Widget(QWidget *parent)
     postOrderButton = new QPushButton(tr("Post-order"));
     levelOrderButton = new QPushButton(tr("Level-order"));
     clearButton = new QPushButton(tr("Clear"));
+    showProgressCheckBox = new QCheckBox(tr("Show Progress"));
     tree = new AVLTree;
     connect(insertEdit, SIGNAL(returnPressed()), insertButton, SLOT(click()));
     connect(deleteEdit, SIGNAL(returnPressed()), deleteButton, SLOT(click()));
@@ -31,8 +32,8 @@ Widget::Widget(QWidget *parent)
     connect(clearButton, SIGNAL(clicked(bool)), tree, SLOT(Clear()));
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->setColumnStretch(0, 1);
-    mainLayout->setRowStretch(11, 1);
-    mainLayout->addWidget(tree->getView(), 0, 0, 12, 1);
+    mainLayout->setRowStretch(12, 1);
+    mainLayout->addWidget(tree->getView(), 0, 0, 13, 1);
     mainLayout->addWidget(insertEdit, 0, 1);
     mainLayout->addWidget(insertButton, 1, 1);
     mainLayout->addWidget(deleteEdit, 2, 1);
@@ -44,6 +45,7 @@ Widget::Widget(QWidget *parent)
     mainLayout->addWidget(postOrderButton, 8, 1);
     mainLayout->addWidget(levelOrderButton, 9, 1);
     mainLayout->addWidget(clearButton, 10, 1);
+    mainLayout->addWidget(showProgressCheckBox, 11, 1);
     setLayout(mainLayout);
     setWindowTitle(tr("AVL Tree Visualize"));
     setMinimumSize(800, 500);
@@ -57,7 +59,7 @@ Widget::~Widget()
 void Widget::treeInsert()
 {
     qDebug() << "Insert" << insertEdit->text().toInt();
-    tree->Insert(insertEdit->text().toInt());
+    tree->Insert(insertEdit->text().toInt(), showProgressCheckBox->isChecked());
     insertEdit->clear();
     insertEdit->setFocus();
 }
@@ -65,7 +67,7 @@ void Widget::treeInsert()
 void Widget::treeDelete()
 {
     qDebug() << "Delete" << deleteEdit->text().toInt();
-    tree->Delete(deleteEdit->text().toInt());
+    tree->Delete(deleteEdit->text().toInt(), showProgressCheckBox->isChecked());
     deleteEdit->clear();
     deleteEdit->setFocus();
 }
@@ -73,7 +75,7 @@ void Widget::treeDelete()
 void Widget::treeFind()
 {
     qDebug() << "Find" << findEdit->text().toInt();
-    tree->Find(findEdit->text().toInt());
+    tree->Find(findEdit->text().toInt(), showProgressCheckBox->isChecked());
     findEdit->clear();
     findEdit->setFocus();
 }

@@ -4,30 +4,33 @@ TreeEdge::TreeEdge(TreeNode* A, TreeNode* B) : mA(A), mB(B)
 {
     connect(A, SIGNAL(destroyed(QObject*)), SLOT(deleteLater()));
     connect(B, SIGNAL(destroyed(QObject*)), SLOT(deleteLater()));
-    connect(A, SIGNAL(fadeOuting()), SLOT(fadeOut()));
-    connect(B, SIGNAL(fadeOuting()), SLOT(fadeOut()));
-    setZValue(-1);
-    mOpacityAnim = new QPropertyAnimation(this, "opacity");
-    mOpacityAnim->setEasingCurve(QEasingCurve::OutExpo);
-    mOpacityAnim->setStartValue(0);
-    mOpacityAnim->setEndValue(1);
-    mOpacityAnim->setDuration(1000);
-    mOpacityAnim->start();
+    setZValue(-2);
+    setOpacity(0);
 }
 
 TreeEdge::~TreeEdge()
 {
-    delete mOpacityAnim;
 }
 
-void TreeEdge::fadeOut()
+QAbstractAnimation *TreeEdge::getFadeInAnim()
 {
-    mOpacityAnim->stop();
-    mOpacityAnim->setEasingCurve(QEasingCurve::OutExpo);
-    mOpacityAnim->setStartValue(opacity());
-    mOpacityAnim->setEndValue(0);
-    mOpacityAnim->start();
-    connect(mOpacityAnim, SIGNAL(finished()), SLOT(deleteLater()));
+    QPropertyAnimation *anim = new QPropertyAnimation(this, "opacity");
+    anim->setEasingCurve(QEasingCurve::OutExpo);
+    anim->setStartValue(0);
+    anim->setEndValue(1);
+    anim->setDuration(500);
+    return anim;
+}
+
+QAbstractAnimation *TreeEdge::getFadeOutAnim()
+{
+    QPropertyAnimation *anim = new QPropertyAnimation(this, "opacity");
+    anim->setEasingCurve(QEasingCurve::OutExpo);
+    anim->setStartValue(1);
+    anim->setEndValue(0);
+    anim->setDuration(500);
+    connect(anim, SIGNAL(finished()), SLOT(deleteLater()));
+    return anim;
 }
 
 QRectF TreeEdge::boundingRect() const

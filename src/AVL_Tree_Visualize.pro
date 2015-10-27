@@ -17,10 +17,12 @@ SOURCES += main.cpp\
     treenode.cpp \
     treeedge.cpp \
     treeview.cpp \
-    avltree.cpp
+    avltree.cpp \
+    treepath.cpp
 
 HEADERS  += widget.h \
     treenode.h \
     treeedge.h \
     treeview.h \
-    avltree.h
+    avltree.h \
+    treepath.h

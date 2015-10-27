@@ -5,9 +5,11 @@ INPUT(
 ./debug/treeedge.o
 ./debug/treeview.o
 ./debug/avltree.o
+./debug/treepath.o
 ./debug/moc_widget.o
 ./debug/moc_treenode.o
 ./debug/moc_treeedge.o
 ./debug/moc_treeview.o
 ./debug/moc_avltree.o
+./debug/moc_treepath.o
 );

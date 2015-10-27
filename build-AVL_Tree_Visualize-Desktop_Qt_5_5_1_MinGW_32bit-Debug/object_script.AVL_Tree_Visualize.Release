@@ -5,9 +5,11 @@ INPUT(
 ./release/treeedge.o
 ./release/treeview.o
 ./release/avltree.o
+./release/treepath.o
 ./release/moc_widget.o
 ./release/moc_treenode.o
 ./release/moc_treeedge.o
 ./release/moc_treeview.o
 ./release/moc_avltree.o
+./release/moc_treepath.o
 );

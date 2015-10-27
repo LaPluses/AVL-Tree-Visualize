@@ -19,14 +19,9 @@ void TreeView::resizeEvent(QResizeEvent *event)
     resize();
 }
 
-void TreeView::addNode(TreeNode *node)
+void TreeView::addItem(QGraphicsItem *item)
 {
-    mScene->addItem(node);
-}
-
-void TreeView::addEdge(TreeEdge *edge)
-{
-    mScene->addItem(edge);
+    mScene->addItem(item);
 }
 
 void TreeView::setSceneRect(QRectF rect)
@@ -38,7 +33,7 @@ void TreeView::setSceneRect(QRectF rect)
 void TreeView::resize()
 {
     zoomAnim->stop();
-    zoomAnim->setEndValue(mScene->itemsBoundingRect().adjusted(-10, -10, 10, 10));
+    zoomAnim->setEndValue(mScene->itemsBoundingRect().adjusted(-25, -25, 25, 25));
     zoomAnim->start();
 }
 

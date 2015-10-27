@@ -16,9 +16,8 @@ class TreeEdge : public QObject, public QGraphicsItem
 public:
     TreeEdge(TreeNode* A, TreeNode* B);
     ~TreeEdge();
-
-public slots:
-    void fadeOut();
+    QAbstractAnimation* getFadeInAnim();
+    QAbstractAnimation* getFadeOutAnim();
 
     // QGraphicsItem interface
 public:
@@ -28,8 +27,6 @@ public:
 private:
     TreeNode* mA;
     TreeNode* mB;
-    QPropertyAnimation *mOpacityAnim;
-    boolean mAlived;
 };
 
 #endif // TREEEDGE_H
