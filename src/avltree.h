@@ -27,6 +27,8 @@ private:
     void getPosAnim(TreeNode *node, int depth, QAnimationGroup *group);
     QAbstractAnimation* getEdgeAnim();
     void getEdgeAnim(TreeNode *node, TreeNode *parent, QAnimationGroup *group);
+    int Count(TreeNode *node);
+    qreal ASL(TreeNode *node, int depth);
 
 public:
     AVLTree();
@@ -42,6 +44,8 @@ public:
     void Insert(int x, bool showProgress);
     void Delete(int x, bool showProgress);
     void Find(int x, bool showProgress);
+    int Count();
+    qreal ASL();
 
 public slots:
     void PreOrder();

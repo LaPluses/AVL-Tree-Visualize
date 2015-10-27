@@ -18,6 +18,10 @@ Widget::Widget(QWidget *parent)
     levelOrderButton = new QPushButton(tr("Level-order"));
     clearButton = new QPushButton(tr("Clear"));
     showProgressCheckBox = new QCheckBox(tr("Show Progress"));
+    countLabel = new QLabel(tr("N = 0"));
+    countLabel->setAlignment(Qt::AlignCenter);
+    aslLabel = new QLabel(tr("ASL = 0"));
+    aslLabel->setAlignment(Qt::AlignCenter);
     tree = new AVLTree;
     connect(insertEdit, SIGNAL(returnPressed()), insertButton, SLOT(click()));
     connect(deleteEdit, SIGNAL(returnPressed()), deleteButton, SLOT(click()));
@@ -32,8 +36,8 @@ Widget::Widget(QWidget *parent)
     connect(clearButton, SIGNAL(clicked(bool)), tree, SLOT(Clear()));
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->setColumnStretch(0, 1);
-    mainLayout->setRowStretch(12, 1);
-    mainLayout->addWidget(tree->getView(), 0, 0, 13, 1);
+    mainLayout->setRowStretch(14, 1);
+    mainLayout->addWidget(tree->getView(), 0, 0, 15, 1);
     mainLayout->addWidget(insertEdit, 0, 1);
     mainLayout->addWidget(insertButton, 1, 1);
     mainLayout->addWidget(deleteEdit, 2, 1);
@@ -46,6 +50,8 @@ Widget::Widget(QWidget *parent)
     mainLayout->addWidget(levelOrderButton, 9, 1);
     mainLayout->addWidget(clearButton, 10, 1);
     mainLayout->addWidget(showProgressCheckBox, 11, 1);
+    mainLayout->addWidget(countLabel, 12, 1);
+    mainLayout->addWidget(aslLabel, 13, 1);
     setLayout(mainLayout);
     setWindowTitle(tr("AVL Tree Visualize"));
     setMinimumSize(800, 500);
@@ -62,6 +68,8 @@ void Widget::treeInsert()
     tree->Insert(insertEdit->text().toInt(), showProgressCheckBox->isChecked());
     insertEdit->clear();
     insertEdit->setFocus();
+    countLabel->setText("N = " + QString::number(tree->Count()));
+    aslLabel->setText("ASL = " + QString::number(tree->ASL()));
 }
 
 void Widget::treeDelete()
@@ -70,6 +78,8 @@ void Widget::treeDelete()
     tree->Delete(deleteEdit->text().toInt(), showProgressCheckBox->isChecked());
     deleteEdit->clear();
     deleteEdit->setFocus();
+    countLabel->setText("N = " + QString::number(tree->Count()));
+    aslLabel->setText("ASL = " + QString::number(tree->ASL()));
 }
 
 void Widget::treeFind()

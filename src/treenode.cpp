@@ -98,7 +98,7 @@ QAbstractAnimation *TreeNode::getFadeOutAnim()
     anim->setEasingCurve(QEasingCurve::OutCurve);
     anim->setStartValue(1);
     anim->setEndValue(0);
-    anim->setDuration(1000);
+    anim->setDuration(500);
     connect(anim, SIGNAL(finished()), SLOT(deleteLater()));
     if (parent)
     {

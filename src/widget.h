@@ -34,6 +34,8 @@ private:
     QPushButton *levelOrderButton;
     QPushButton *clearButton;
     QCheckBox *showProgressCheckBox;
+    QLabel *countLabel;
+    QLabel *aslLabel;
     AVLTree *tree;
 };
 

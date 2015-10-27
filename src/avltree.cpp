@@ -182,7 +182,8 @@ void AVLTree::Delete(TreeNode * &node, int x, QAnimationGroup *group)
                 if (node)
                     node->setParent(parent)->start(QAbstractAnimation::DeleteWhenStopped);
             }
-            group->addAnimation(getPosAnim());
+            if (group)
+                group->addAnimation(getPosAnim());
         }
     }
     if (group && parent)
@@ -339,6 +340,16 @@ void AVLTree::Find(int x, bool showProgress)
     }
 }
 
+int AVLTree::Count()
+{
+    return Count(root);
+}
+
+qreal AVLTree::ASL()
+{
+    return ASL(root, 0) / Count();
+}
+
 void AVLTree::Clear()
 {
     Clear(root);
@@ -482,6 +493,18 @@ void AVLTree::getEdgeAnim(TreeNode *node, TreeNode *parent, QAnimationGroup *gro
     group->addAnimation(node->setParent(parent));
     getEdgeAnim(node->Lson, node, group);
     getEdgeAnim(node->Rson, node, group);
+}
+
+int AVLTree::Count(TreeNode *node)
+{
+    if (node == NULL) return 0;
+    return Count(node->Lson) + Count(node->Rson) + 1;
+}
+
+qreal AVLTree::ASL(TreeNode *node, int depth)
+{
+    if (node == NULL) return 0;
+    return ASL(node->Lson, depth + 1) + ASL(node->Rson, depth + 1) + depth + 1;
 }
 
 void AVLTree::getPosAnim(TreeNode *node, int depth, QAnimationGroup *group)
