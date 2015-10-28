@@ -5,6 +5,7 @@
 #include <QtWidgets>
 #include "treeedge.h"
 #include "treeview.h"
+#include "speedcontroller.h"
 
 class TreeEdge;
 
@@ -33,7 +34,6 @@ public:
     ~TreeNode();
     void setPos(QPointF center);
     void moveTo(QPointF p);
-    void pop();
     int value();
     void setValue(int value);
     QAbstractAnimation* getPopAnim();
@@ -56,7 +56,6 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
-    QPropertyAnimation *mPopAnim;
     int mRedValue;
 };
 

@@ -10,7 +10,7 @@ TreePath::TreePath(TreeNode *node, TreeNode *son, TreeView *view) : QGraphicsIte
 QAbstractAnimation *TreePath::getToSonAnim()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(this, "step");
-    anim->setDuration(mSon ? 200 : 0);
+    anim->setDuration(mSon ? SpeedController::getInstance()->speed() / 2 : 0);
     anim->setStartValue(0);
     anim->setEndValue(1);
     return anim;
@@ -19,7 +19,7 @@ QAbstractAnimation *TreePath::getToSonAnim()
 QAbstractAnimation *TreePath::getToParentAnim()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(this, "step");
-    anim->setDuration(mSon ? 200 : 0);
+    anim->setDuration(mSon ? SpeedController::getInstance()->speed() / 2 : 0);
     anim->setStartValue(1);
     anim->setEndValue(0);
     connect(anim, SIGNAL(finished()), this, SLOT(deleteLater()));

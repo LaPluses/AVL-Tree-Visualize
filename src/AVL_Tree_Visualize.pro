@@ -18,11 +18,13 @@ SOURCES += main.cpp\
     treeedge.cpp \
     treeview.cpp \
     avltree.cpp \
-    treepath.cpp
+    treepath.cpp \
+    speedcontroller.cpp
 
 HEADERS  += widget.h \
     treenode.h \
     treeedge.h \
     treeview.h \
     avltree.h \
-    treepath.h
+    treepath.h \
+    speedcontroller.h

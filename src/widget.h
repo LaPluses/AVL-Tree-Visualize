@@ -7,6 +7,7 @@
 #include "treenode.h"
 #include "treeedge.h"
 #include "avltree.h"
+#include "speedcontroller.h"
 
 class Widget : public QWidget
 {
@@ -36,6 +37,8 @@ private:
     QCheckBox *showProgressCheckBox;
     QLabel *countLabel;
     QLabel *aslLabel;
+    QLabel *speedLabel;
+    QSlider *speedSlider;
     AVLTree *tree;
 };
 

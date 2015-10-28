@@ -2,12 +2,6 @@
 
 TreeNode::TreeNode() : QGraphicsItem()
 {
-    mPopAnim = new QPropertyAnimation(this, "scale");
-    mPopAnim->setEasingCurve(QEasingCurve::OutExpo);
-    mPopAnim->setKeyValueAt(0, 1);
-    mPopAnim->setKeyValueAt(0.5, 2);
-    mPopAnim->setKeyValueAt(1, 1);
-    mPopAnim->setDuration(1000);
     setOpacity(0);
     h = 0;
     data = 0;
@@ -18,12 +12,6 @@ TreeNode::TreeNode() : QGraphicsItem()
 
 TreeNode::~TreeNode()
 {
-}
-
-void TreeNode::pop()
-{
-    mPopAnim->stop();
-    mPopAnim->start();
 }
 
 int TreeNode::value()
@@ -43,7 +31,7 @@ QAbstractAnimation* TreeNode::getPopAnim()
     anim->setKeyValueAt(0, 1);
     anim->setKeyValueAt(0.5, 2);
     anim->setKeyValueAt(1, 1);
-    anim->setDuration(400);
+    anim->setDuration(SpeedController::getInstance()->speed());
     return anim;
 }
 
@@ -60,7 +48,7 @@ QAbstractAnimation *TreeNode::getTurnRedAnim()
     QPropertyAnimation *anim = new QPropertyAnimation(this, "redValue");
     anim->setStartValue(0);
     anim->setEndValue(255);
-    anim->setDuration(200);
+    anim->setDuration(SpeedController::getInstance()->speed() / 2);
     return anim;
 }
 
@@ -69,7 +57,7 @@ QAbstractAnimation *TreeNode::getTurnBlackAnim()
     QPropertyAnimation *anim = new QPropertyAnimation(this, "redValue");
     anim->setStartValue(255);
     anim->setEndValue(0);
-    anim->setDuration(200);
+    anim->setDuration(SpeedController::getInstance()->speed() / 2);
     return anim;
 }
 
@@ -77,7 +65,7 @@ QAbstractAnimation *TreeNode::getMoveAnim(QPointF p)
 {
     QPropertyAnimation *anim = new QPropertyAnimation(this, "pos");
     anim->setEasingCurve(QEasingCurve::OutElastic);
-    anim->setDuration(500);
+    anim->setDuration(SpeedController::getInstance()->speed() * 1.5);
     anim->setEndValue(p);
     return anim;
 }
@@ -88,7 +76,7 @@ QAbstractAnimation *TreeNode::getFadeInAnim()
     anim->setEasingCurve(QEasingCurve::OutExpo);
     anim->setStartValue(0);
     anim->setEndValue(1);
-    anim->setDuration(500);
+    anim->setDuration(SpeedController::getInstance()->speed());
     return anim;
 }
 
@@ -98,7 +86,7 @@ QAbstractAnimation *TreeNode::getFadeOutAnim()
     anim->setEasingCurve(QEasingCurve::OutCurve);
     anim->setStartValue(1);
     anim->setEndValue(0);
-    anim->setDuration(500);
+    anim->setDuration(SpeedController::getInstance()->speed());
     connect(anim, SIGNAL(finished()), SLOT(deleteLater()));
     if (parent)
     {

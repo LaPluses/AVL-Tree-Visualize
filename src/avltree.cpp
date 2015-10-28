@@ -347,7 +347,8 @@ int AVLTree::Count()
 
 qreal AVLTree::ASL()
 {
-    return ASL(root, 0) / Count();
+    qreal q = ASL(root, 0);
+    return q == 0 ? 0 : q / Count();
 }
 
 void AVLTree::Clear()

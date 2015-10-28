@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtWidgets>
 #include "treenode.h"
+#include "speedcontroller.h"
 
 class TreeNode;
 

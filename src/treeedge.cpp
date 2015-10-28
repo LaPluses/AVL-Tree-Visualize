@@ -18,7 +18,7 @@ QAbstractAnimation *TreeEdge::getFadeInAnim()
     anim->setEasingCurve(QEasingCurve::OutExpo);
     anim->setStartValue(0);
     anim->setEndValue(1);
-    anim->setDuration(500);
+    anim->setDuration(SpeedController::getInstance()->speed());
     return anim;
 }
 
@@ -28,7 +28,7 @@ QAbstractAnimation *TreeEdge::getFadeOutAnim()
     anim->setEasingCurve(QEasingCurve::OutExpo);
     anim->setStartValue(1);
     anim->setEndValue(0);
-    anim->setDuration(500);
+    anim->setDuration(SpeedController::getInstance()->speed());
     connect(anim, SIGNAL(finished()), SLOT(deleteLater()));
     return anim;
 }
